@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Add book</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<style>
+	label {
+		width: 150px;
+		float: left;
+	}
+</style>
+<body>
+	<h2>Lisää uusi harjoitus</h2>
+	<h3>Syötä harjoituksen tiedot:</h3>
+	<div>
+		<form th:object="${note}" th:action="@{save}" action="#" method="post">
+			<label for ="day">Viikon päivä</label>
+			<input type="text" id="day" th:field="*{day}" />
+			<br><br>
+			<label for ="date">Päivämäärä</label>
+			<input type="text" id="date" th:field="*{date}" />
+			<br><br>
+			<label for="workoutlist">Valitse harjoitus</label>
+		<select id="workoutlist" th:field="*{workout}" class="form-control">
+			<option th:each="workout: ${workouts}"
+						th:value="${workout.workoutId}" 
+							th:text="${workout.name}"></option>
+		</select>
+			<br><br>
+			<label for="powerlist">Valitse tehoalue</label>
+		<select id="powerlist" th:field="*{power}" class="form-control">
+			<option th:each="power: ${powers}"
+						th:value="${power.powerId}" 
+							th:text="${power.name}"></option>
+		</select>
+			<br><br>
+			<label for ="time">Kesto min</label>
+			<input type="number" id="time" th:field="*{time}" />
+			<br><br>
+			<label for ="kcal">Kulutus kcal</label>
+			<input type="text" id="kcal" th:field="*{kcal}" />
+			<br>
+			<br>
+			<input type="submit" value="Lisää harjoitus" class="btn btn-primary"></input>
+			<br><br>
+			<a href="/notelist" class="btn btn-primary">Takaisin memoon</a>
+		</form>
+	</div>
+</body>
+</html>
