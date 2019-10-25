@@ -42,11 +42,11 @@ public class MindbodyApplication {
 			powerrepo.save(new Power("Maximikestävyys"));
 			powerrepo.save(new Power("Voimaharjoittelu"));
 			
-			noterepo.save(new Note("la", 14.9, workoutrepo.findByName("Sali 1").get(0), powerrepo.findByName("Voimaharjoittelu").get(0), 90, 400));
-			noterepo.save(new Note("ma", 16.9, workoutrepo.findByName("Kävely").get(0), powerrepo.findByName("Peruskestävyys").get(0), 60, 500));
-			noterepo.save(new Note("to", 19.9, workoutrepo.findByName("Sali 2").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 90, 300));
-			noterepo.save(new Note("su", 22.9, workoutrepo.findByName("Hölkkä").get(0),powerrepo.findByName("Vauhtikestävyys").get(0), 45, 350));
-			noterepo.save(new Note("to", 26.9, workoutrepo.findByName("Sali 3").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 80, 450));
+			noterepo.save(new Note(1, 14.9, workoutrepo.findByName("Sali 1").get(0), powerrepo.findByName("Voimaharjoittelu").get(0), 90, 400));
+			noterepo.save(new Note(1, 16.9, workoutrepo.findByName("Kävely").get(0), powerrepo.findByName("Peruskestävyys").get(0), 60, 500));
+			noterepo.save(new Note(2, 19.9, workoutrepo.findByName("Sali 2").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 90, 300));
+			noterepo.save(new Note(3, 22.9, workoutrepo.findByName("Hölkkä").get(0),powerrepo.findByName("Vauhtikestävyys").get(0), 45, 350));
+			noterepo.save(new Note(4, 26.9, workoutrepo.findByName("Sali 3").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 80, 450));
 			
 			log.info("fetch all notes");
 			for (Note note : noterepo.findAll()) {

@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Note {
@@ -14,24 +15,25 @@ public class Note {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private String day;
 	private double date;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name = "workoutId")
     private Workout workout;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name = "powerId")
     private Power power;
 	
-	private int time, kcal;
+	private int wow, time, kcal;
 	
 	public Note() {}
 
-	public Note(String day, double date, Workout workout, Power power, int time, int kcal) {
+	public Note(int wow, double date, Workout workout, Power power, int time, int kcal) {
 		super();
-		this.day = day;
+		this.wow = wow;
 		this.date = date;
 		this.workout = workout;
 		this.power = power;
@@ -47,12 +49,12 @@ public class Note {
 		this.id = id;
 	}
 
-	public String getDay() {
-		return day;
+	public int getWow() {
+		return wow;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setWow(int wow) {
+		this.wow = wow;
 	}
 
 	public double getDate() {
@@ -96,7 +98,7 @@ public class Note {
 	}
 	@Override
 	public String toString() {
-		return "Note [day=" + day + ", date=" + date + ", workout=" + workout +" , power=" + power +" time=" + time + ", kcal=" + kcal + "]";
+		return "Note [wow=" + wow + ", date=" + date + ", workout=" + workout +" , power=" + power +" time=" + time + ", kcal=" + kcal + "]";
 	}
 	
 }

@@ -6,47 +6,34 @@
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <style>
-	table {
-  	font-family: arial, sans-serif;
- 	border-collapse: collapse;
-  	width: 100%;
-	}
-
-	td, th {
-	border: 1px solid #dddddd;
-  	text-align: left;
-  	padding: 8px;
-	}
-
 	tr:nth-child(even) {
   	background-color: #dddddd;
 	}
 </style>
 <body>
-	
-		<h2>Tervetuloa</h2>
-	
-	<table>
+	<h2>Tervetuloa</h2>
+	<table class="table table-bordered table-responsive-md table-striped text-center">
 	<tr>
-		<th>Viikon päivä</th>
-		<th>Päivämäärä</th>
-		<th>Harjoitus</th>
-		<th>Tehoalue</th>
-		<th>Kesto min</th>
-		<th>Kulutus kcal</th>
-		
+		<th class="text-center">Harjoitusviikko</th>
+        <th class="text-center">Päivämäärä</th>
+        <th class="text-center">Harjoitus</th>
+        <th class="text-center">Tehoalue</th>
+        <th class="text-center">Kesto min</th>
+        <th class="text-center">Kulutus kcal</th>
 	</tr>
-				<tr th:each = "note : ${notes}">
-					<td th:text="${note.day}"></td>
-					<td th:text="${note.date}"></td>
-					<td th:text="${note.workout.name}"></td>
-					<td th:text="${note.power.name}"></td>
-					<td th:text="${note.time}"></td>
-					<td th:text="${note.kcal}"></td>
-					<td><a th:href="@{/delete/{id}(id=${note.id})}" class="btn btn-xs btn-danger"onclick="return confirm('Haluatko varmasti poistaa tiedot?');">Poista</a></td> 
+			<tr th:each = "note : ${notes}">
+				<td contenteditable="true" th:text="${note.wow}"></td>
+				<td contenteditable="true" th:text="${note.date}"></td>
+				<td contenteditable="true" th:text="${note.workout.name}"></td>
+				<td contenteditable="true" th:text="${note.power.name}"></td>
+				<td contenteditable="true" th:text="${note.time}"></td>
+				<td contenteditable="true" th:text="${note.kcal}"></td>
+				<td><a th:href="@{/delete/{id}(id=${note.id})}" class="btn btn-xs btn-danger"onclick="return confirm('Haluatko varmasti poistaa tiedot?');">Poista</a></td> 
+				<td><a th:href="@{/muokkaa/{id}(id=${note.id})}" class="btn btn-xs btn-default">Muokkaa</a></td>
 				</tr>
 	</table>
-	<a href="/edit" class="btn btn-primary">Muokkaa tietoja</a>
-	<a href="/add" class="btn btn-primary">Lisää harjoitus</a>
+	<a href="/lisaa" class="btn btn-md btn-success btn-block">Lisää harjoitus</a>
+	<br><br>
+	
 </body>
 </html>

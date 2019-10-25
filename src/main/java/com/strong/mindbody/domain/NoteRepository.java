@@ -3,8 +3,11 @@ package com.strong.mindbody.domain;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource
 public interface NoteRepository extends CrudRepository <Note, Long> {
 	
-	List<Note> findByDay(String day);
+	List<Note> findByWow(@Param("wow")int wow);
 }
