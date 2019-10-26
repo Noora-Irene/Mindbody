@@ -11,10 +11,11 @@
 	}
 </style>
 <body>
-	<div class="col-md-4">
-	<h2 th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h2>
+	<div>
+	<h2 sec:authorize="hasAuthority('USER')" th:inline="text">Your mind, [[${#httpServletRequest.remoteUser}]], greates your body</h2>
 	</div>
-	<div class="col-md-4" style="padding:20px 0">
+	<br>
+	<div class="col-md-4" style="padding:15px 0">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Kirjaudu ulos" class="btn btn-md btn-warning"/>
 		</form>
@@ -44,6 +45,5 @@
 	</table>
 	<a href="/lisaa" class="btn btn-md btn-success btn-block">Lisää harjoitus</a>
 	<br><br>
-	
 </body>
 </html>
