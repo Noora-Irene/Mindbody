@@ -1,7 +1,5 @@
 package com.strong.mindbody.web;
 
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +36,7 @@ public class NoteController {
 	
 	// RESTful service to get all notes
 	@RequestMapping(value="/notes", method = RequestMethod.GET)
-	public @ResponseBody List<Note> bookListRest() {
+	public @ResponseBody List<Note> noteListRest() {
 		return (List<Note>) noterepo.findAll();
 	}	
 	// RESTful service to get note by id
