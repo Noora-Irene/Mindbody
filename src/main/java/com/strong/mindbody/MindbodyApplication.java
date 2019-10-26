@@ -14,6 +14,8 @@ import com.strong.mindbody.domain.Power;
 import com.strong.mindbody.domain.PowerRepository;
 import com.strong.mindbody.domain.Workout;
 import com.strong.mindbody.domain.WorkoutRepository;
+import com.strong.mindbody.domain.User;
+import com.strong.mindbody.domain.UserRepository;
 
 @SpringBootApplication
 public class MindbodyApplication {
@@ -24,9 +26,9 @@ public class MindbodyApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(NoteRepository noterepo, WorkoutRepository workoutrepo, PowerRepository powerrepo) {
+	public CommandLineRunner demo(NoteRepository noterepo, WorkoutRepository workoutrepo, PowerRepository powerrepo, UserRepository userrepo) {
 		return (args) -> {
-			log.info("save a couple of notes");
+			log.info("tallenna");
 			
 			workoutrepo.save(new Workout("Sali 1"));
 			workoutrepo.save(new Workout("Sali 2"));
@@ -47,6 +49,12 @@ public class MindbodyApplication {
 			noterepo.save(new Note(2, 19.9, workoutrepo.findByName("Sali 2").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 90, 300));
 			noterepo.save(new Note(3, 22.9, workoutrepo.findByName("Hölkkä").get(0),powerrepo.findByName("Vauhtikestävyys").get(0), 45, 350));
 			noterepo.save(new Note(4, 26.9, workoutrepo.findByName("Sali 3").get(0),powerrepo.findByName("Voimaharjoittelu").get(0), 80, 450));
+			
+			// Create users: admin/admin user/user
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+				userrepo.save(user1);
+				userrepo.save(user2);
 			
 			log.info("fetch all notes");
 			for (Note note : noterepo.findAll()) {

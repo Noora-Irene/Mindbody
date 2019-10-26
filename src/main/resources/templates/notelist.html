@@ -11,7 +11,15 @@
 	}
 </style>
 <body>
-	<h2>Tervetuloa</h2>
+	<div class="col-md-4">
+	<h2 th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h2>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-md btn-warning"/>
+		</form>
+	</div>
+	
 	<table class="table table-bordered table-responsive-md table-striped text-center">
 	<tr>
 		<th class="text-center">Harjoitusviikko</th>
@@ -20,6 +28,8 @@
         <th class="text-center">Tehoalue</th>
         <th class="text-center">Kesto min</th>
         <th class="text-center">Kulutus kcal</th>
+        <th sec:authorize="hasAuthority('USER')"> </th>
+        <th sec:authorize="hasAuthority('USER')"> </th>
 	</tr>
 			<tr th:each = "note : ${notes}">
 				<td contenteditable="true" th:text="${note.wow}"></td>
@@ -28,8 +38,8 @@
 				<td contenteditable="true" th:text="${note.power.name}"></td>
 				<td contenteditable="true" th:text="${note.time}"></td>
 				<td contenteditable="true" th:text="${note.kcal}"></td>
-				<td><a th:href="@{/delete/{id}(id=${note.id})}" class="btn btn-xs btn-danger"onclick="return confirm('Haluatko varmasti poistaa tiedot?');">Poista</a></td> 
-				<td><a th:href="@{/muokkaa/{id}(id=${note.id})}" class="btn btn-xs btn-default">Muokkaa</a></td>
+				<td sec:authorize="hasAuthority('USER')"><a th:href="@{/delete/{id}(id=${note.id})}" class="btn btn-xs btn-danger"onclick="return confirm('Haluatko varmasti poistaa tiedot?');">Poista</a></td> 
+				<td sec:authorize="hasAuthority('USER')"><a th:href="@{/muokkaa/{id}(id=${note.id})}" class="btn btn-xs btn-default">Muokkaa</a></td>
 				</tr>
 	</table>
 	<a href="/lisaa" class="btn btn-md btn-success btn-block">Lisää harjoitus</a>

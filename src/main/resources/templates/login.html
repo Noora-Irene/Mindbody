@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Kirjaudu sisään</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+</head>
+<body>
+	<div th:if="${param.error}">
+		Virheellinen käyttäjätunnus ja/ tai salasana. Ole hyvä ja yritä uudelleen.
+	</div>
+	
+	<div th:if="${param.logout}">
+		Sinut on onnistuneesti kirjattu ulos.
+	</div>
+	
+	<form th:action="@{/login}" method="post">
+		<br>
+		<div><label>Syötä</label></div>
+		<br>
+		<div><label>KÄYTTÄJÄTUNNUS </label><input type="text" name="username"></div>
+		<div><label>SALASANA </label><input type="password" name="password"></div>
+		<div><input type="submit" value="Kirjaudu sisään" class="btn btn-success"></div>
+	</form>
+</body>
+</html>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,11 @@ public class NoteController {
 	
 	@Autowired
 	private PowerRepository powerrepo;
+	
+	 @RequestMapping("/login")
+	    public String login() {	
+	        return "login";
+	    }	
 	
 	@RequestMapping("/treenimemo")
 	public String noteList(Model model) {
@@ -54,6 +60,7 @@ public class NoteController {
 		return "addnote";
 	}
 	@RequestMapping(value = "/muokkaa/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
 	public String editNote(@PathVariable("id") long id, Model model) {
 		model.addAttribute("note", noterepo.findById(id));
 		model.addAttribute("workouts", workoutrepo.findAll());
@@ -69,6 +76,7 @@ public class NoteController {
 		return "redirect:treenimemo";
 	}
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
 	public String deleteNote(@PathVariable("id") long id, Model model) {
 		noterepo.deleteById(id);
 		
