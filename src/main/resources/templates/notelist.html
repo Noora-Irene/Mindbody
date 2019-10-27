@@ -30,7 +30,7 @@
         <th class="text-center">Kesto min</th>
         <th class="text-center">Kulutus kcal</th>
         <th sec:authorize="hasAuthority('USER')"> </th>
-        <th sec:authorize="hasAuthority('USER')"> </th>
+        <th sec:authorize="hasAuthority('ADMIN')"> </th>
 	</tr>
 			<tr th:each = "note : ${notes}">
 				<td contenteditable="true" th:text="${note.wow}"></td>
@@ -40,10 +40,9 @@
 				<td contenteditable="true" th:text="${note.time}"></td>
 				<td contenteditable="true" th:text="${note.kcal}"></td>
 				<td sec:authorize="hasAuthority('USER')"><a th:href="@{/delete/{id}(id=${note.id})}" class="btn btn-xs btn-danger"onclick="return confirm('Haluatko varmasti poistaa tiedot?');">Poista</a></td> 
-				<td sec:authorize="hasAuthority('USER')"><a th:href="@{/muokkaa/{id}(id=${note.id})}" class="btn btn-xs btn-default">Muokkaa</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muokkaa/{id}(id=${note.id})}" class="btn btn-xs btn-default">Muokkaa</a></td>
 				</tr>
 	</table>
 	<a href="/lisaa" class="btn btn-md btn-success btn-block">Lisää harjoitus</a>
-	<br><br>
 </body>
 </html>

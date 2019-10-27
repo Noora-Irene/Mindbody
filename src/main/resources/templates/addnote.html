@@ -3,49 +3,50 @@
 <head>
 	<title>Lisää harjoitus</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
-<style>
-	label {
-		width: 150px;
-		float: left;
-	}
-</style>
 <body>
-	<h3>Syötä harjoituksen tiedot:</h3>
-	<div>
-		<form th:object="${note}" th:action="@{save}" action="#" method="post">
-			<label for ="wow">Harjoitusviikko</label>
-			<input type="number" id="wow" th:field="*{wow}" />
-			<br><br>
-			<label for ="date">Päivämäärä</label>
-			<input type="text" id="date" th:field="*{date}" />
-			<br><br>
+	<div class="container">
+	<h3>Syötä harjoituksen tiedot</h3>
+	<div class="col-md-4">
+	
+			<form th:object="${note}" th:action="@{save}" action="#" method="post">
+		
+				<label for ="wow">Harjoitusviikko</label>
+				<input type="number" id="wow" th:field="*{wow}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<label for ="date">Päivämäärä</label>
+				<input type="text" id="date" th:field="*{date}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<label for="workoutlist">Valitse harjoitus</label>
-		<select id="workoutlist" th:field="*{workout}" class="form-control">
-			<option th:each="workout: ${workouts}"
+			<select id="workoutlist" th:field="*{workout}" class="form-control">
+				<option th:each="workout: ${workouts}"
 						th:value="${workout.workoutId}" 
 							th:text="${workout.name}"></option>
-		</select>
-			<br><br>
-			<label for="powerlist">Valitse tehoalue</label>
-		<select id="powerlist" th:field="*{power}" class="form-control">
-			<option th:each="power: ${powers}"
+			</select>
+				<label for="powerlist">Valitse tehoalue</label>
+				<select id="powerlist" th:field="*{power}" class="form-control">
+					<option th:each="power: ${powers}"
 						th:value="${power.powerId}" 
 							th:text="${power.name}"></option>
-		</select>
-			<br><br>
-			<label for ="time">Kesto min</label>
-			<input type="number" id="time" th:field="*{time}" />
-			<br><br>
-			<label for ="kcal">Kulutus kcal</label>
-			<input type="text" id="kcal" th:field="*{kcal}" />
-			<br>
-			<br>
-			<input type="submit" value="Lisää harjoitus" class="btn btn-md btn-success "></input>
-			<br><br>
-			<a href="/treenimemo" class="btn btn-xs btn-primary">Takaisin memoon</a>
-		</form>
+			</select>
+				<label for ="time">Kesto min</label>
+				<input type="number" id="time" th:field="*{time}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<label for ="kcal">Kulutus kcal</label>
+				<input type="text" id="kcal" th:field="*{kcal}" class="form-control"/>
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<input type="submit" value="Lisää harjoitus" class="btn btn-md btn-success "></input>
+			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<a href="/treenimemo" class="btn btn-xs btn-primary">Takaisin memoon</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

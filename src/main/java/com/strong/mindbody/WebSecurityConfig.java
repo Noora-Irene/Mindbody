@@ -24,10 +24,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .authorizeRequests()
         .antMatchers("/css/**").permitAll() // Enable css when logged out
-        .anyRequest().authenticated()
         .and()
-        .authorizeRequests()
-          .anyRequest().authenticated()
+        .authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
+        .and()
+        .authorizeRequests().anyRequest().authenticated()
           .and()
       .formLogin()
       	.loginPage("/login")
@@ -36,8 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .and()
       .logout()
           .permitAll();
+        
     }
-    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
