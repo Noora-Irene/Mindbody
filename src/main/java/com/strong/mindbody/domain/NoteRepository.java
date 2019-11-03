@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface NoteRepository extends CrudRepository <Note, Long> {
 	
-	List<Note> findByWow(String wow);
+	List<Note> findByWow(int wow);
 }
